@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"strings"
-	"fmt"
 )
 
 const (
@@ -27,3 +27,9 @@ func handleGetProjectinfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+/*
+func jsonToProjectinfo(jsonStr string) projectData {
+
+}
+*/

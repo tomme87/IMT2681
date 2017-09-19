@@ -12,5 +12,3 @@ func main() {
 	http.HandleFunc(BasePath, handleGetProjectinfo)
 	http.ListenAndServe(":8080", nil)
 }
-
-
