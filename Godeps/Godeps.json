@@ -1,0 +1,14 @@
+{
+	"ImportPath": ".",
+	"GoVersion": "go1.8",
+	"GodepVersion": "v79",
+	"Packages": [
+		"assignment1/..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "assignment1",
+			"Rev": "9112b1f18b86a314cb3d6514d072e5007b0a2ae9"
+		}
+	]
+}

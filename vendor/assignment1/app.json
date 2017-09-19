@@ -1,0 +1,9 @@
+{
+  "name": "Start on Heroku: Go",
+  "description": "Go Getting Started Example App",
+  "keywords": [
+    "go",
+  ],
+  "image": "heroku/go:1.8",
+  "mount_dir": "assignment1",
+}
