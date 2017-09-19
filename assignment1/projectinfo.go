@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"sort"
 )
 
 type ProjectInfo struct {
@@ -47,16 +48,32 @@ func (pi *ProjectInfo) AddCommitInfo(r io.Reader) error {
 	}
 
 	pi.Committer = contributors[0].Login
-
-	total := 0
-	for _, contributor := range contributors {
-		total += contributor.Contributions
-	}
-	pi.Commits = total
+	pi.Commits = contributors[0].Contributions
 
 	return nil
 }
 
 func (pi *ProjectInfo) AddLanguageInfo(r io.Reader) error {
+	//var languages map[string]interface{}
+	languages := make(map[string]interface{})
+	err := json.NewDecoder(r).Decode(&languages)
+	if err != nil {
+		return err
+	}
+
+	pi.Languages = make([]string, len(languages))
+	i := 0
+	for k := range languages {
+		pi.Languages[i] = k
+		i++
+	}
+	sort.Strings(pi.Languages)
+
 	return nil
 }
+
+/*
+func (pi *ProjectInfo) toJSON(w *io.Writer) {
+	json.NewEncoder(w).Encode(pi)
+}
+*/

@@ -42,7 +42,7 @@ func TestProjectInfo_AddCommitInfo(t *testing.T) {
 	if pi.Committer != "ijuma" {
 		t.Error("Wrong committer", pi.Committer)
 	}
-	if pi.Commits != 4176 {
+	if pi.Commits != 309 {
 		t.Error("Wrong amount of commits", pi.Commits)
 	}
 }
@@ -59,7 +59,7 @@ func TestProjectInfo_AddLanguageInfo(t *testing.T) {
 		t.Error("Unable to add info", addErr)
 	}
 
-	if !reflect.DeepEqual(pi.Languages, []string{"Java", "Scala", "Python", "Shell", "Batchfile"}) {
+	if !reflect.DeepEqual(pi.Languages, []string{"Batchfile", "HTML", "Java", "Python", "Scala", "Shell", "XSLT"}) {
 		t.Error("Wrong Languages", pi.Languages)
 	}
 }
