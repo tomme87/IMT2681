@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 )
 
 const (
@@ -9,6 +10,7 @@ const (
 )
 
 func main() {
+	port := os.Getenv("PORT")
 	http.HandleFunc(BasePath, handleGetProjectinfo)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+port, nil)
 }
