@@ -19,7 +19,7 @@ type ProjectInfo struct {
 // GitRepo is used to decode repo info into. Could be placed inside of Add().
 type GitRepo struct {
 	FullName string `json:"full_name"`
-	Owner     struct {
+	Owner    struct {
 		Login string
 	}
 }
