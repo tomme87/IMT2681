@@ -9,14 +9,14 @@ import (
 
 // The struct that holds the info about project.
 type ProjectInfo struct {
-	Project   string
-	Owner     string
-	Committer string
-	Commits   int
-	Languages []string
+	Project   string   `json: "project"`
+	Owner     string   `json: "owner"`
+	Committer string   `json: "committer"`
+	Commits   int      `json: "commits"`
+	Languages []string `json: "languages"`
 }
 
-// The struct that is used to decode repo info into. Could be placed inside of Add().
+// ProjectInfo is used to decode repo info into. Could be placed inside of Add().
 type GitRepo struct {
 	Full_name string
 	Owner     struct {
@@ -24,14 +24,14 @@ type GitRepo struct {
 	}
 }
 
-// The struct that is used to decode contributor info into. Could be placed inside of AddCommitInfo().
+// GitContributor is used to decode contributor info into. Could be placed inside of AddCommitInfo().
 type GitContributor struct {
 	Login         string
 	Contributions int
 }
 
 /**
- * Adds project and owner information to projectinfo from JSON
+ * Add adds project and owner information to projectinfo from JSON
  *
  * @param r an io.Reader with the JSON input.
  */
@@ -49,7 +49,7 @@ func (pi *ProjectInfo) Add(r io.Reader) error {
 }
 
 /**
- * Adds Comitter and commits to projectinfo from JSON
+ * AddCommitInfo adds Comitter and commits to projectinfo from JSON
  *
  * @param r an io.Reader with the JSON input.
  */
@@ -67,7 +67,7 @@ func (pi *ProjectInfo) AddCommitInfo(r io.Reader) error {
 }
 
 /**
- * Adds languages to projectinfo from JSON
+ * AddLanguageInfo adds languages to projectinfo from JSON
  *
  * @param r an io.Reader with the JSON input.
  */

@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	BasePath = "/projectinfo/v1/"
+	BasePath = "/projectinfo/v1/" // The Base URL for the project.
 )
 
 /**
