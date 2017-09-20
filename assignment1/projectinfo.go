@@ -66,11 +66,8 @@ func (pi *ProjectInfo) AddLanguageInfo(r io.Reader) error {
 		return err
 	}
 
-	pi.Languages = make([]string, len(languages))
-	i := 0
 	for k := range languages {
-		pi.Languages[i] = k
-		i++
+		pi.Languages = append(pi.Languages, k)
 	}
 	sort.Strings(pi.Languages) // Sort alphabetically.
 
