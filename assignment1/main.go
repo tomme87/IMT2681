@@ -5,8 +5,9 @@ import (
 	"os"
 )
 
+// BasePath is the base URL for out project.
 const (
-	BasePath = "/projectinfo/v1/" // The Base URL for the project.
+	BasePath = "/projectinfo/v1/"
 )
 
 /**
