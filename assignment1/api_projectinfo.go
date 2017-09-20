@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// 3 = HOST, 4 = owner, 5 = repo
 const (
 	Host  = 3
 	Owner = 4

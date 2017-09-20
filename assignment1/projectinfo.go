@@ -9,16 +9,16 @@ import (
 
 // ProjectInfo holds the info about project.
 type ProjectInfo struct {
-	Project   string   `json: "project"`
-	Owner     string   `json: "owner"`
-	Committer string   `json: "committer"`
-	Commits   int      `json: "commits"`
-	Languages []string `json: "languages"`
+	Project   string   `json:"project"`
+	Owner     string   `json:"owner"`
+	Committer string   `json:"committer"`
+	Commits   int      `json:"commits"`
+	Languages []string `json:"languages"`
 }
 
 // GitRepo is used to decode repo info into. Could be placed inside of Add().
 type GitRepo struct {
-	Full_name string
+	FullName string `json:"full_name"`
 	Owner     struct {
 		Login string
 	}
@@ -38,7 +38,7 @@ func (pi *ProjectInfo) Add(r io.Reader) error {
 		return err
 	}
 
-	pi.Project = fmt.Sprintf("github.com/%s", repo.Full_name)
+	pi.Project = fmt.Sprintf("github.com/%s", repo.FullName)
 	pi.Owner = repo.Owner.Login
 
 	return nil
