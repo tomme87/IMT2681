@@ -30,10 +30,7 @@ type GitContributor struct {
 	Contributions int
 }
 
-/* Add adds project and owner information to projectinfo from JSON
- *
- * @param r an io.Reader with the JSON input.
- */
+// Add adds project and owner information to projectinfo from JSON
 func (pi *ProjectInfo) Add(r io.Reader) error {
 	var repo GitRepo
 	err := json.NewDecoder(r).Decode(&repo)
@@ -47,10 +44,7 @@ func (pi *ProjectInfo) Add(r io.Reader) error {
 	return nil
 }
 
-/* AddCommitInfo adds Comitter and commits to projectinfo from JSON
- *
- * @param r an io.Reader with the JSON input.
- */
+// AddCommitInfo adds Comitter and commits to projectinfo from JSON
 func (pi *ProjectInfo) AddCommitInfo(r io.Reader) error {
 	var contributors []GitContributor
 	err := json.NewDecoder(r).Decode(&contributors)
@@ -64,10 +58,7 @@ func (pi *ProjectInfo) AddCommitInfo(r io.Reader) error {
 	return nil
 }
 
-/* AddLanguageInfo adds languages to projectinfo from JSON
- *
- * @param r an io.Reader with the JSON input.
- */
+// AddLanguageInfo adds languages to projectinfo from JSON
 func (pi *ProjectInfo) AddLanguageInfo(r io.Reader) error {
 	languages := make(map[string]interface{})
 	err := json.NewDecoder(r).Decode(&languages)
