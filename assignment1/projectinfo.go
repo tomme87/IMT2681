@@ -7,6 +7,7 @@ import (
 	"sort"
 )
 
+// The struct that holds the info about project.
 type ProjectInfo struct {
 	Project   string
 	Owner     string
@@ -15,6 +16,7 @@ type ProjectInfo struct {
 	Languages []string
 }
 
+// The struct that is used to decode repo info into. Could be placed inside of Add().
 type GitRepo struct {
 	Full_name string
 	Owner     struct {
@@ -22,11 +24,17 @@ type GitRepo struct {
 	}
 }
 
+// The struct that is used to decode contributor info into. Could be placed inside of AddCommitInfo().
 type GitContributor struct {
 	Login         string
 	Contributions int
 }
 
+/**
+ * Adds project and owner information to projectinfo from JSON
+ *
+ * @param r an io.Reader with the JSON input.
+ */
 func (pi *ProjectInfo) Add(r io.Reader) error {
 	var repo GitRepo
 	err := json.NewDecoder(r).Decode(&repo)
@@ -40,6 +48,11 @@ func (pi *ProjectInfo) Add(r io.Reader) error {
 	return nil
 }
 
+/**
+ * Adds Comitter and commits to projectinfo from JSON
+ *
+ * @param r an io.Reader with the JSON input.
+ */
 func (pi *ProjectInfo) AddCommitInfo(r io.Reader) error {
 	var contributors []GitContributor
 	err := json.NewDecoder(r).Decode(&contributors)
@@ -53,8 +66,12 @@ func (pi *ProjectInfo) AddCommitInfo(r io.Reader) error {
 	return nil
 }
 
+/**
+ * Adds languages to projectinfo from JSON
+ *
+ * @param r an io.Reader with the JSON input.
+ */
 func (pi *ProjectInfo) AddLanguageInfo(r io.Reader) error {
-	//var languages map[string]interface{}
 	languages := make(map[string]interface{})
 	err := json.NewDecoder(r).Decode(&languages)
 	if err != nil {
@@ -67,13 +84,7 @@ func (pi *ProjectInfo) AddLanguageInfo(r io.Reader) error {
 		pi.Languages[i] = k
 		i++
 	}
-	sort.Strings(pi.Languages)
+	sort.Strings(pi.Languages) // Sort alphabetically.
 
 	return nil
 }
-
-/*
-func (pi *ProjectInfo) toJSON(w *io.Writer) {
-	json.NewEncoder(w).Encode(pi)
-}
-*/

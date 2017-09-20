@@ -7,6 +7,10 @@ import (
 	"testing"
 )
 
+/**
+ * Testing Add() in projectinfo.
+ * Using the file repos_apache_kafka.json file, instead of querying github for live data.
+ */
 func TestProjectInfo_Add(t *testing.T) {
 	content, err := ioutil.ReadFile("repos_apache_kafka.json")
 	if err != nil {
@@ -27,6 +31,10 @@ func TestProjectInfo_Add(t *testing.T) {
 	}
 }
 
+/**
+ * Testing AddCommitInfo() in projectinfo
+ * Using the file repos_apache_kafka_contributors.json file, instead of querying github for live data.
+ */
 func TestProjectInfo_AddCommitInfo(t *testing.T) {
 	content, err := ioutil.ReadFile("repos_apache_kafka_contributors.json")
 	if err != nil {
@@ -47,6 +55,10 @@ func TestProjectInfo_AddCommitInfo(t *testing.T) {
 	}
 }
 
+/**
+ * Testing AddLanguageInfo() in projectinfo
+ * Using the file repos_apache_kafka_languages.json file, instead of querying github for live data.
+ */
 func TestProjectInfo_AddLanguageInfo(t *testing.T) {
 	content, err := ioutil.ReadFile("repos_apache_kafka_languages.json")
 	if err != nil {

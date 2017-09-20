@@ -13,6 +13,12 @@ const (
 	Repo  = 5
 )
 
+/**
+ * Our function that handles our HTTP call to our server.
+ *
+ * @param w The response writer.
+ * @param r The HTTP request.
+ */
 func handleGetProjectinfo(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
@@ -56,9 +62,3 @@ func handleGetProjectinfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
-
-/*
-func jsonToProjectinfo(jsonStr string) projectData {
-
-}
-*/
