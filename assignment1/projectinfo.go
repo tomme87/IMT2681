@@ -32,7 +32,7 @@ type GitContributor struct {
 
 // Add adds project and owner information to projectinfo from JSON
 func (pi *ProjectInfo) Add(r io.Reader) error {
-	var repo GitRepo
+	repo := GitRepo{}
 	err := json.NewDecoder(r).Decode(&repo)
 	if err != nil {
 		return err
@@ -46,7 +46,7 @@ func (pi *ProjectInfo) Add(r io.Reader) error {
 
 // AddCommitInfo adds Comitter and commits to projectinfo from JSON
 func (pi *ProjectInfo) AddCommitInfo(r io.Reader) error {
-	var contributors []GitContributor
+	contributors := []GitContributor{}
 	err := json.NewDecoder(r).Decode(&contributors)
 	if err != nil {
 		return err
