@@ -7,11 +7,12 @@ import (
 	"strings"
 )
 
-// 3 = HOST, 4 = owner, 5 = repo
+// 3 = HOST, 4 = owner, 5 = repo, BaseURL the base url to github API
 const (
-	Host  = 3
-	Owner = 4
-	Repo  = 5
+	Host    = 3
+	Owner   = 4
+	Repo    = 5
+	BaseURL = "https://api.github.com/"
 )
 
 // RateLimit holds the rate limit info from github.
@@ -25,7 +26,7 @@ type RateLimit struct {
 
 // checkRateLimit checks the github rate limit.
 func checkRateLimit() (RateLimit, error) {
-	res, err := http.Get("https://api.github.com/rate_limit")
+	res, err := http.Get(BaseURL + "rate_limit")
 	if err != nil {
 		return RateLimit{}, err
 	}
@@ -72,21 +73,21 @@ func handleGetProjectinfo(w http.ResponseWriter, r *http.Request) {
 		pi := ProjectInfo{}
 
 		//repoRes, err := http.Get("https://api.github.com/repos/apache/kafka")
-		repoRes, err := http.Get(fmt.Sprintf("https://api.github.com/repos/%s/%s", parts[Owner], parts[Repo]))
+		repoRes, err := http.Get(fmt.Sprintf("%srepos/%s/%s", BaseURL, parts[Owner], parts[Repo]))
 		if err != nil {
 			http.Error(w, "unable to get repo info", http.StatusInternalServerError)
 			return
 		}
 		pi.Add(repoRes.Body)
 
-		contributorsRes, err := http.Get(fmt.Sprintf("https://api.github.com/repos/%s/%s/contributors", parts[Owner], parts[Repo]))
+		contributorsRes, err := http.Get(fmt.Sprintf("%srepos/%s/%s/contributors", BaseURL, parts[Owner], parts[Repo]))
 		if err != nil {
 			http.Error(w, "unable to get repo info", http.StatusInternalServerError)
 			return
 		}
 		pi.AddCommitInfo(contributorsRes.Body)
 
-		languagesRes, err := http.Get(fmt.Sprintf("https://api.github.com/repos/%s/%s/languages", parts[Owner], parts[Repo]))
+		languagesRes, err := http.Get(fmt.Sprintf("%srepos/%s/%s/languages", BaseURL, parts[Owner], parts[Repo]))
 		if err != nil {
 			http.Error(w, "unable to get repo info", http.StatusInternalServerError)
 			return
