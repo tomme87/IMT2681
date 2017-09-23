@@ -34,7 +34,7 @@ func TestHandleGetProjectinfo_NotImplemented(t *testing.T) {
 		}
 
 		if resp.StatusCode != http.StatusNotImplemented {
-			t.Errorf("Expected %s, but got %s", http.StatusNotImplemented, resp.StatusCode)
+			t.Errorf("Expected %d, but got %d", http.StatusNotImplemented, resp.StatusCode)
 		}
 	}
 }
