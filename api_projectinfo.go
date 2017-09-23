@@ -14,6 +14,27 @@ const (
 	Repo  = 5
 )
 
+type RateLimit struct {
+	Rate struct {
+		Limit     int
+		Remaining int
+		Reset     int
+	}
+}
+
+func checkRateLimit() (RateLimit, error) {
+	res, err := http.Get("https://api.github.com/rate_limit")
+	if err != nil {
+		return RateLimit{}, err
+	}
+	rl := RateLimit{}
+	errJ := json.NewDecoder(res.Body).Decode(&rl)
+	if errJ != nil {
+		return RateLimit{}, err
+	}
+	return rl, nil
+}
+
 /**
  * Our function that handles our HTTP call to our server.
  *
@@ -33,6 +54,16 @@ func handleGetProjectinfo(w http.ResponseWriter, r *http.Request) {
 		}
 		if parts[Host] != "github.com" {
 			http.Error(w, "Not implemented. only github.com supported.", http.StatusNotImplemented)
+			return
+		}
+
+		rl, err := checkRateLimit()
+		if err != nil { // Unable to check rate limit..
+			http.Error(w, "Unable to check rate limit", http.StatusInternalServerError)
+			return
+		}
+		if rl.Rate.Limit == rl.Rate.Remaining { // Rate limit exceeded.
+			json.NewEncoder(w).Encode(rl)
 			return
 		}
 
