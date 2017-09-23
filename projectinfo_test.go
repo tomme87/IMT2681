@@ -23,8 +23,8 @@ func TestProjectInfo_Add(t *testing.T) {
 		t.Error("Unable to add info", addErr)
 	}
 
-	if pi.Project != "github.com/apache/kafka" {
-		t.Error("Wrong project")
+	if pi.Project != "kafka" {
+		t.Error("Wrong project", pi.Project)
 	}
 	if pi.Owner != "apache" {
 		t.Error("Wrong owner")

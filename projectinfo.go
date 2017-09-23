@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"sort"
 )
@@ -18,8 +17,8 @@ type ProjectInfo struct {
 
 // GitRepo is used to decode repo info into. Could be placed inside of Add().
 type GitRepo struct {
-	FullName string `json:"full_name"`
-	Owner    struct {
+	Name  string
+	Owner struct {
 		Login string
 	}
 }
@@ -38,7 +37,7 @@ func (pi *ProjectInfo) Add(r io.Reader) error {
 		return err
 	}
 
-	pi.Project = fmt.Sprintf("github.com/%s", repo.FullName)
+	pi.Project = repo.Name
 	pi.Owner = repo.Owner.Login
 
 	return nil
