@@ -71,7 +71,7 @@ func TestProjectInfo_AddLanguageInfo(t *testing.T) {
 		t.Error("Unable to add info", addErr)
 	}
 
-	if !reflect.DeepEqual(pi.Languages, []string{"Batchfile", "HTML", "Java", "Python", "Scala", "Shell", "XSLT"}) {
-		t.Error("Wrong Languages", pi.Languages)
+	if !reflect.DeepEqual(pi.Language, []string{"Batchfile", "HTML", "Java", "Python", "Scala", "Shell", "XSLT"}) {
+		t.Error("Wrong Languages", pi.Language)
 	}
 }
