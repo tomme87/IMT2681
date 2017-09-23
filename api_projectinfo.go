@@ -31,6 +31,10 @@ func handleGetProjectinfo(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Bad request", http.StatusBadRequest)
 			return
 		}
+		if parts[Host] != "github.com" {
+			http.Error(w, "Not implemented. only github.com supported.", http.StatusNotImplemented)
+			return
+		}
 
 		pi := ProjectInfo{}
 
