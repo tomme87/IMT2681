@@ -1,5 +1,5 @@
 {
-	"ImportPath": ".",
+	"ImportPath": "github.com/tomme87/IMT2681",
 	"GoVersion": "go1.8",
 	"GodepVersion": "v79",
 	"Packages": [
