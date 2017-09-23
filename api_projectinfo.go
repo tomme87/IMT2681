@@ -65,7 +65,7 @@ func handleGetProjectinfo(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Unable to check rate limit", http.StatusInternalServerError)
 			return
 		}
-		if rl.Rate.Limit == rl.Rate.Remaining { // Rate limit exceeded.
+		if rl.Rate.Remaining == 0 { // Rate limit exceeded.
 			json.NewEncoder(w).Encode(rl)
 			return
 		}
