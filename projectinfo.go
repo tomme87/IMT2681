@@ -12,7 +12,7 @@ type ProjectInfo struct {
 	Owner     string   `json:"owner"`
 	Committer string   `json:"committer"`
 	Commits   int      `json:"commits"`
-	Languages []string `json:"languages"`
+	Language  []string `json:"language"`
 }
 
 // GitRepo is used to decode repo info into. Could be placed inside of Add().
@@ -66,9 +66,9 @@ func (pi *ProjectInfo) AddLanguageInfo(r io.Reader) error {
 	}
 
 	for k := range languages {
-		pi.Languages = append(pi.Languages, k)
+		pi.Language = append(pi.Language, k)
 	}
-	sort.Strings(pi.Languages) // Sort alphabetically.
+	sort.Strings(pi.Language) // Sort alphabetically.
 
 	return nil
 }
