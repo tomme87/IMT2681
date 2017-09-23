@@ -14,6 +14,7 @@ const (
 	Repo  = 5
 )
 
+// RateLimit holds the rate limit info from github.
 type RateLimit struct {
 	Rate struct {
 		Limit     int
@@ -22,6 +23,7 @@ type RateLimit struct {
 	}
 }
 
+// checkRateLimit checks the github rate limit.
 func checkRateLimit() (RateLimit, error) {
 	res, err := http.Get("https://api.github.com/rate_limit")
 	if err != nil {
